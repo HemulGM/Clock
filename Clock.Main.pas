@@ -132,15 +132,11 @@ var
   TmpStr: string;
   S, M, H, Ms: Word;
   Y, MM, D: Word;
-  Stamp: Cardinal;
   LSize: TD2D1SizeF;
-  Layer: ID2D1Layer;
-  LParam: TD2D1LayerParameters;
 begin
   with Canvas do
   begin
     FTime := Now;
-    Stamp := GetTickCount;
     RenderTarget.BeginDraw;
    //RenderTarget.SetAntialiasMode(D2D1_ANTIALIAS_MODE_FORCE_DWORD);
     LSize.Width := ClientWidth;
@@ -172,7 +168,7 @@ begin
       if i mod 5 = 0 then
       begin
         R := 77;
-        tmp := Point(Round(Center.X + Cos(Angle / 180 * pi) * R), Round(Center.Y - Sin(Angle / 180 * pi) * R));
+        tmp := TPoint.Create(Round(Center.X + Cos(Angle / 180 * pi) * R), Round(Center.Y - Sin(Angle / 180 * pi) * R));
         TmpRect := CreateRectFromPoint(tmp, 30, 20);
         TmpStr := IntToStr(i div 5);
         TextRect(TmpRect, TmpStr, [tfCenter, tfVerticalCenter, tfSingleLine]);
